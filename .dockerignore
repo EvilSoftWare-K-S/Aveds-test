@@ -1,0 +1,29 @@
+node_modules
+
+# Git
+#.git
+#.gitignore
+#.gitattributes
+#.gitlab-ci.yaml
+
+# env
+# .env
+#.env.development
+#.env.test
+
+# build and test
+#.husky
+#src
+#test
+#jest.config.ts
+
+# config files
+#.editorconfig
+#.eslintrc.json
+#.prettierrc
+#tsconfig.json
+#tsconfig.node.json
+#vite.config.ts
+
+#package-lock.json
+#README.md
