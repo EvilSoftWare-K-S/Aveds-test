@@ -1,13 +1,12 @@
 import { PATHS } from '@shared/routes/routes';
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { Outlet } from 'react-router-dom'; 
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 // Layouts
-import LayoutMain from '@pages/layout-site-about/LayoutMain';
+import LayoutMain from '@pages/layout-main/LayoutMain';
 
 // Pages
-// const HomePage = lazy(() => import('@pages/home/HomePage'));
-// const ContactPage = lazy(() => import('@pages/about/ContactPage'));
+const HomePage = lazy(() => import('@pages/home/HomePage'));
+const ContactPage = lazy(() => import('@pages/contact/ContactPage'));
 // const NotFoundPage = lazy(() => import('@pages/not-found-page/NotFoundPage'));
 
 // Security Pages
@@ -21,7 +20,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     return <Navigate to={PATHS.home} replace />;
   }
 
-  return <>{children}</>;
+  return children;
 };
 
 export const router = () =>
@@ -36,18 +35,18 @@ export const router = () =>
       children: [
         {
           index: true,
-          // element: <HomePage/>
+          element: <HomePage />,
         },
         {
           path: PATHS.contact,
-          // element: <ContactPage />
+          element: <ContactPage />,
         },
         {
           path: PATHS.profile,
           element: (
             <Suspense fallback={<div>Загрузка сервиса...</div>}>
               <ProtectedRoute>
-                <Outlet/>
+                <Outlet />
               </ProtectedRoute>
             </Suspense>
           ),

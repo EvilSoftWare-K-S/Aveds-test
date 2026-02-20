@@ -6,13 +6,10 @@ import styles from './Button.module.scss';
 
 export interface ButtonProps {
   children: ReactNode;
-  size?: 'xs' | 'sm' | 'md' | 'lg'| 'xl'| 'circle';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'circle' | 'auto';
   type?: 'button' | 'submit' | 'reset';
   href?: string;
-  theme?:
-    | 'primary'
-    | 'opacity'
-    | 'secondary'
+  theme?: 'primary' | 'opacity' | 'secondary' | 'none';
   disabled?: boolean;
   className?: string;
   width?: 'auto' | 'max';

@@ -1,0 +1,105 @@
+.home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  &_wrap {
+    display: flex;
+    flex-direction: column;
+    margin: 16.5px 30px;
+    gap: 35px;
+    &_title {
+      font-weight: 700;
+      font-size: 58px;
+      line-height: 80px;
+      letter-spacing: 0.2px;
+    }
+    &_buttonPanel {
+      height: 100%;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+  &_adblock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    &_card {
+      box-shadow: 0px 13px 19px 0px #00000012;
+      margin: 0;
+      max-width: 328px;
+      width: 100%;
+      padding: 35px 40px;
+      display: flex;
+      flex-direction: column;
+
+      gap: 20px;
+      &_logo {
+        width: 75px;
+        height: 75px;
+        border: none;
+        border-radius: 100%;
+        background-color: $danger-color;
+        position: relative;
+        &_wrap {
+          width: 35px;
+          height: 35px;
+          position: absolute;
+          top: 28%;
+          left: 28%;
+          &_svg {
+            width: 35px;
+            height: 35px;
+          }
+        }
+      }
+      &_title {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+      }
+      &_hr {
+        width: 50px;
+        height: 2px;
+        opacity: 1;
+        background: #e74040;
+      }
+      &_text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.2px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  // laptop
+  .home_adblock {
+    flex-wrap: wrap;
+  }
+  .home_adblock_card {
+    margin: 0 auto;
+  }
+  .home_wrap_title {
+    font-size: 39px;
+    line-height: 54px;
+  }
+}
+@media (max-width: 375px) {
+  .home_adblock {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  .home_wrap_title {
+    font-size: 28px;
+    line-height: 39px;
+  }
+  .home_wrap {
+    margin: 18.5px 10px;
+  }
+}

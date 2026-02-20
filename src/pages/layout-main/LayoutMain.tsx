@@ -5,9 +5,9 @@ import styles from './LayoutMain.module.scss';
 
 const LayoutMain = () => {
   return (
-    <div >
+    <div className={styles.layoutmain}>
       <Header />
-      <main className={styles.main}>
+      <main className={styles.layoutmain_main}>
         <Outlet />
         <ModalManager />
       </main>
