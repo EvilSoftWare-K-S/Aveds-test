@@ -8,7 +8,6 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:storybook/recommended",
     "plugin:import/typescript",
     "prettier"
   ],
@@ -36,9 +35,6 @@
     "no-console": "error",
     "react/self-closing-comp": ["error", { "component": true, "html": true }],
     "@typescript-eslint/no-extraneous-class": "off",
-    "semi": "off",
-    "@typescript-eslint/semi": ["error", "always"],
-
     "react/jsx-no-useless-fragment": "error",
     "@typescript-eslint/import/prefer-default-export": "off",
     "@typescript-eslint/no-unused-expressions": [

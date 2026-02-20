@@ -2,8 +2,10 @@ import { configureStore, combineReducers, PreloadedState } from '@reduxjs/toolki
 import { useDispatch, useSelector, useStore, TypedUseSelectorHook } from 'react-redux';
 
 import { modalReducer } from '@app/providers/model/ModalProvider';
+import { authApi } from '@features/login-form/model/authApi';
 export const rootReducer = combineReducers({
       modalSelector: modalReducer,
+       [authApi.reducerPath]: authApi.reducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
@@ -11,7 +13,7 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
-        
+        authApi.middleware,
       ]),
     preloadedState,
   });

@@ -1,18 +1,35 @@
 import { Button } from '@shared/ui/button';
 import style from './Header.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { PATHS } from '@shared/routes/routes';
+import { useDispatch } from 'react-redux';
+import { openModal } from '@app/providers/model/ModalProvider';
 
 export const Header = () => {
+  const navigate = useNavigate();
+  const HandleGoToContact = () => {
+    navigate(PATHS.contact);
+  };
+  const goToHome = () => {
+    navigate(PATHS.home);
+  };
+  const dispatch = useDispatch();
+    const handleOpenSignInModal = () => {
+      dispatch(openModal('sign-in'));
+    };
   return (
     <header className={style.header}>
       <div className={style.header_wrap}>
-        <svg className={style.header_wrap_logo} onClick={() => {}}>
-          <use href={'src/shared/ui/assets/header/logo.svg'} />
-        </svg>
+        <Button theme='none' size='auto' onClick={goToHome}>
+          <svg className={style.header_wrap_logo}>
+            <use href={'src/shared/ui/assets/header/logo.svg'} />
+          </svg>
+        </Button>
         <nav className={style.header_wrap_nav}>
-          <Button theme='opacity' size='xs'>
+          <Button onClick={HandleGoToContact} theme='opacity' size='xs'>
             Контакты
           </Button>
-          <Button theme='secondary' size='lg'>
+          <Button onClick={handleOpenSignInModal} theme='secondary' size='lg'>
             Войти
           </Button>
         </nav>
