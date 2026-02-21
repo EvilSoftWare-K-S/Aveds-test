@@ -1,0 +1,39 @@
+.header {
+  height: 80px;
+  border-bottom: solid black 2px;
+
+  &_wrap {
+    height: 100%;
+    margin: 0 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &_logo {
+      height: 24px;
+      min-width: 54px;
+      max-width: 54px;
+    }
+    &_nav {
+      height: 100%;
+      max-width: 333px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header_wrap {
+    margin: 0 35px;
+  }
+  .header_wrap_nav {
+    max-width: 250px;
+  }
+}
+@media (max-width: 375px) {
+  .header_wrap {
+    margin: 0 10px;
+  }
+}

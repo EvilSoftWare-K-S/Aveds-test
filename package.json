@@ -1,0 +1,70 @@
+{
+  "name": "medaveds",
+  "private": false,
+  "license": "UNLICENSED",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --force --open",
+    "tsc": "tsc",
+    "build": "tsc && vite build",
+    "lint": "tsc --noEmit && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --no-error-on-unmatched-pattern --write src/**/*.{js,jsx,ts,tsx,scss,md,json} --config ./.prettierrc",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit && eslint .",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "classnames": "^2.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.71.1",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^7.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.2",
+    "@types/prettier": "^3",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "cross-env": "^7.0.3",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.2",
+    "msw": "^2.12.10",
+    "prettier": "^3.8.1",
+    "sass": "^1.93.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vite-plugin-image-optimizer": "^1.1.7",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-tsconfig-paths": "^4.2.1"
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "node": ">= 18.17.0",
+    "yarn": ">= 1.22.19"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,md,json}": [
+      "yarn format",
+      "git add -A ."
+    ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
+}
