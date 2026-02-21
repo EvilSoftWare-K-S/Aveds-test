@@ -10,6 +10,7 @@ import { PATHS } from '@shared/routes/routes';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '@app/providers/model/ModalProvider';
 import { setTokens, setTokensNotRemember } from '../model/tokenSlice';
+import { Loading } from '@shared/ui/loading/loading';
 
 export const LoginForm = (): JSX.Element => {
   const [showPassword, setShowPassword] = useState(false);
@@ -155,7 +156,7 @@ export const LoginForm = (): JSX.Element => {
         size='xl'
         disabled={!isValid || isLoading}
       >
-        {isLoading ? 'Вход...' : 'Войти'}
+        {isLoading ? <Loading/> : 'Войти'}
       </Button>
     </form>
   );

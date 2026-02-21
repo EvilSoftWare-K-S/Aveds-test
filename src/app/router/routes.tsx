@@ -5,6 +5,7 @@ import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 import LayoutMain from '@pages/layout-main/LayoutMain';
 import { useAppSelector } from '@app/store';
 import { selectIsAuthenticated } from '@features/login-form/model/tokenSlice';
+import { Loading } from '@shared/ui/loading/loading';
 
 // Pages
 const HomePage = lazy(() => import('@pages/home/HomePage'));
@@ -30,7 +31,21 @@ export const router = () =>
     {
       path: PATHS.home,
       element: (
-        <Suspense fallback={<div>Загрузка...</div>}>
+        <Suspense
+          fallback={
+            <div
+              style={{
+                display: 'flex',
+                height: '100%',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Loading />
+            </div>
+          }
+        >
           <LayoutMain />
         </Suspense>
       ),
