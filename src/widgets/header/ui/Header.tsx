@@ -2,8 +2,7 @@ import { Button } from '@shared/ui/button';
 import style from './Header.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { PATHS } from '@shared/routes/routes';
-import { useDispatch } from 'react-redux';
-import { openModal } from '@app/providers/model/ModalProvider';
+import { ButtonSignIn } from '@features/button-signin-logout/ButtonSignIn';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -13,10 +12,6 @@ export const Header = () => {
   const goToHome = () => {
     navigate(PATHS.home);
   };
-  const dispatch = useDispatch();
-    const handleOpenSignInModal = () => {
-      dispatch(openModal('sign-in'));
-    };
   return (
     <header className={style.header}>
       <div className={style.header_wrap}>
@@ -29,9 +24,7 @@ export const Header = () => {
           <Button onClick={HandleGoToContact} theme='opacity' size='xs'>
             Контакты
           </Button>
-          <Button onClick={handleOpenSignInModal} theme='secondary' size='lg'>
-            Войти
-          </Button>
+          <ButtonSignIn />
         </nav>
       </div>
     </header>

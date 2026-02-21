@@ -3,6 +3,8 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 // Layouts
 import LayoutMain from '@pages/layout-main/LayoutMain';
+import { useAppSelector } from '@app/store';
+import { selectIsAuthenticated } from '@features/login-form/model/tokenSlice';
 
 // Pages
 const HomePage = lazy(() => import('@pages/home/HomePage'));
@@ -10,11 +12,11 @@ const ContactPage = lazy(() => import('@pages/contact/ContactPage'));
 // const NotFoundPage = lazy(() => import('@pages/not-found-page/NotFoundPage'));
 
 // Security Pages
-// const ProfilePage = lazy(() => import('@pages/profile/ProfilePage'));
+const ProfilePage = lazy(() => import('@pages/profile/profile'));
 
 // Компонент для защиты приватных роутов
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const isAuthenticated = false;
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
   if (!isAuthenticated) {
     return <Navigate to={PATHS.home} replace />;
@@ -53,7 +55,7 @@ export const router = () =>
           children: [
             {
               index: true,
-              // element: <ProfilePage/>
+              element: <ProfilePage />,
             },
           ],
         },

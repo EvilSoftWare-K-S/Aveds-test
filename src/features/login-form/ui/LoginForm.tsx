@@ -5,6 +5,11 @@ import './LoginForm.scss';
 import { useLoginMutation } from '../model/authApi';
 import { Button } from '@shared/ui/button';
 import { isErrorMessage, isFetchBaseQueryError } from '@shared/utils/type-guard';
+import { useNavigate } from 'react-router-dom';
+import { PATHS } from '@shared/routes/routes';
+import { useDispatch } from 'react-redux';
+import { closeModal } from '@app/providers/model/ModalProvider';
+import { setTokens, setTokensNotRemember } from '../model/tokenSlice';
 
 export const LoginForm = (): JSX.Element => {
   const [showPassword, setShowPassword] = useState(false);
@@ -27,17 +32,30 @@ export const LoginForm = (): JSX.Element => {
   const watchLogin = watch('login', '');
   const watchPassword = watch('password', '');
 
+  const dispatch = useDispatch();
+  const handlerOnClose = () => {
+    dispatch(closeModal());
+  };
+
+  const navigate = useNavigate();
+  const handleGoToProfile = () => {
+    navigate(PATHS.profile);
+  };
   const onSubmit = async (data: LoginFormData) => {
     try {
       const response = await login({
         login: data.login,
         password: data.password,
       }).unwrap();
-
       if (response.success) {
-        if (data.rememberMe && response.token) {
-          localStorage.setItem('token', response.token);
+        if (data.rememberMe && response.tokens) {
+          dispatch(setTokens(response.tokens));
         }
+        else if(response.tokens) {
+          dispatch(setTokensNotRemember(response.tokens));
+        }
+        handleGoToProfile();
+        handlerOnClose();
       }
     } catch {
       /* empty */
@@ -46,7 +64,6 @@ export const LoginForm = (): JSX.Element => {
 
   return (
     <form className='login-form' onSubmit={handleSubmit(onSubmit)}>
-      {/* Поле логина */}
       <div className='form-group'>
         <label htmlFor='login' className='form-label'>
           Логин
@@ -67,7 +84,7 @@ export const LoginForm = (): JSX.Element => {
               message: 'Логин должен содержать максимум 20 символов',
             },
             pattern: {
-              value: /^[a-zA-Z0-9_-]+$/,
+              value: /^[a-zA-Z0-9_@.-]+$/,
               message: 'Логин может содержать только буквы, цифры, дефис и подчеркивание',
             },
           })}
@@ -76,7 +93,6 @@ export const LoginForm = (): JSX.Element => {
         <span className='char-counter'>{watchLogin.length}/20 символов</span>
       </div>
 
-      {/* Поле пароля */}
       <div className='form-group'>
         <label htmlFor='password' className='form-label'>
           Пароль
@@ -91,7 +107,7 @@ export const LoginForm = (): JSX.Element => {
               required: 'Пароль обязателен для заполнения',
               minLength: {
                 value: 6,
-                message: 'Пароль должен содержать минимум 6 символов',
+                message: 'Пароль должен содержать минимум 8 символов',
               },
               maxLength: {
                 value: 30,
@@ -115,7 +131,6 @@ export const LoginForm = (): JSX.Element => {
         <span className='char-counter'>{watchPassword.length}/30 символов</span>
       </div>
 
-      {/* Чекбокс "Запомнить меня" */}
       <div className='form-group checkbox-group'>
         <label className='checkbox-label'>
           <input type='checkbox' {...register('rememberMe')} className='checkbox-input' />

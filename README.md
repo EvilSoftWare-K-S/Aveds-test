@@ -1,5 +1,19 @@
 # Aveds-test
 
+## тестовые юзеры
+{
+id: '1',
+login: 'user@example.com',
+name: 'Сергей',
+password: 'password123',
+},
+{
+id: '2',
+login: 'user2@example.com',
+name: 'Вадим',
+password: 'password321',
+},
+
 ## Инструкция по установке и запуску
 
 📦Скопируйте этот репозиторий. Вам понадобятся "node" и "yarn", установленные глобально на вашем компьютере.  
