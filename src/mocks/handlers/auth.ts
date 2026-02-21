@@ -5,7 +5,6 @@ import {
   invalidateRefreshToken,
   decodeToken,
 } from '../utils/tokens';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { LoginRequest, AuthResponse } from '../type';
 
 export const authHandlers = [
