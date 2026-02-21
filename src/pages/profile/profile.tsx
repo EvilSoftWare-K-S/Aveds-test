@@ -3,7 +3,7 @@ import style from './profile.module.scss';
 import { ButtonSignIn } from '@features/button-signin-logout/ButtonSignIn';
 import { useNavigate } from 'react-router-dom';
 import { PATHS } from '@shared/routes/routes';
-import { useCachedProfile } from './model/useCachedProfile';
+import { useCachedProfile } from '@features/button-signin-logout/model/useCachedProfile';
 
 const ProfilePage = () => {
   const { data } = useCachedProfile();
