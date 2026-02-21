@@ -1,6 +1,7 @@
 .modal {
   position: fixed;
-  top: -0%;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,8 +9,14 @@
   min-width: 100vw;
   padding: 20px;
   z-index: 9999;
-  box-shadow: 2px 2px 20px 0px #00000040;
   background: #0000004d;
+  
+  animation: fadeIn 0.3s ease forwards;
+  
+  &_closing {
+    animation: fadeOut 0.3s ease forwards;
+  }
+
   &_wrap {
     background: white;
     padding: 40px;
@@ -17,18 +24,65 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
+    
+    animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    
+    &_closing {
+      animation: scaleOut 0.3s ease forwards;
+    }
+
     &_head {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       margin-bottom: 30px;
+      
       &_title {
         text-align: center;
         color: #333;
-
         font-size: 24px;
         font-weight: 600;
       }
     }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.7);
   }
 }
