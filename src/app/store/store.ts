@@ -3,16 +3,16 @@ import { useDispatch, useSelector, useStore, TypedUseSelectorHook } from 'react-
 
 import { modalReducer } from '@app/providers/model/ModalProvider';
 import { authApi } from '@features/login-form/model/authApi';
-import { profileApi } from '@pages/profile/model/profileApi';
+import { profileApi } from '@features/button-signin-logout/model/profileApi';
 import tokenReducer from '@features/login-form/model/tokenSlice';
-import { logoutApi } from '@features/button-signin-logout/model/logoutApi';
+// import { logoutApi } from '@features/button-signin-logout/model/logoutApi';
 
 export const rootReducer = combineReducers({
   modalSelector: modalReducer,
   token: tokenReducer,
   [authApi.reducerPath]: authApi.reducer,
   [profileApi.reducerPath]: profileApi.reducer,
-  [logoutApi.reducerPath]: logoutApi.reducer,
+  // [logoutApi.reducerPath]: logoutApi.reducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
@@ -22,7 +22,7 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
       getDefaultMiddleware().concat([
         authApi.middleware,
         profileApi.middleware,
-        logoutApi.middleware,
+        // logoutApi.middleware,
       ]),
     preloadedState,
   });

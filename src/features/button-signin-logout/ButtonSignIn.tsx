@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from '@app/store';
 import { clearTokens, selectIsAuthenticated } from '@features/login-form/model/tokenSlice';
 import { Button } from '@shared/ui/button';
 import { FC } from 'react';
-import { useLogoutMutation } from './model/logoutApi';
-
+import { useCachedProfile } from '@features/button-signin-logout/model/useCachedProfile';
+import { useLogoutMutation } from '@features/button-signin-logout/model/profileApi';
 export interface ButtonProps {
   textIn?: string;
   textOut?: string;
@@ -26,13 +26,15 @@ export const ButtonSignIn: FC<ButtonProps> = (props) => {
 
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
-
+  const { clearCache } = useCachedProfile();
   const handleLogout = async () => {
     try {
       await logout().unwrap();
       dispatch(clearTokens());
     } catch {
       dispatch(clearTokens());
+    } finally {
+      clearCache();
     }
   };
   const handleOpenSignInModal = () => {

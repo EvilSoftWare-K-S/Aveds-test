@@ -4,6 +4,7 @@ import { RootState } from '@app/store';
 
 export const profileApi = createApi({
   reducerPath: 'profileApi',
+  tagTypes: ['Profile'],
   baseQuery: fetchBaseQuery({
     baseUrl: '/api/auth',
     prepareHeaders: (headers, { getState }) => {
@@ -22,8 +23,15 @@ export const profileApi = createApi({
         url: '/me',
         method: 'GET',
       }),
+      providesTags: ['Profile'],
+    }),
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        url: '/logout',
+        method: 'POST',
+      }),
     }),
   }),
 });
 
-export const { useProfileApiQuery } = profileApi;
+export const { useProfileApiQuery, useLogoutMutation } = profileApi;

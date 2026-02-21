@@ -1,10 +1,26 @@
 import { useEffect, useState } from 'react';
-import { useProfileApiQuery } from './profileApi';
+import { profileApi, useProfileApiQuery } from './profileApi';
 import { ProfileResponse } from '../types/profileType';
+import { useDispatch } from 'react-redux';
 
 export const useCachedProfile = () => {
   const { data, error, isLoading } = useProfileApiQuery();
-  const [cachedData, setCachedData] = useState<ProfileResponse | null>(null);
+  const [cachedData, setCachedData] = useState<ProfileResponse | null>(() => {
+    const stored = localStorage.getItem('profileData');
+    if (data) {
+      return data;
+    }
+    if (stored) {
+      return JSON.parse(stored);
+    }
+    return null;
+  });
+  const dispatch = useDispatch();
+  const clearCache = () => {
+    dispatch(profileApi.util.resetApiState());
+    setCachedData(null);
+    localStorage.removeItem('profileData');
+  };
 
   useEffect(() => {
     if (data) {
@@ -28,6 +44,7 @@ export const useCachedProfile = () => {
   return {
     data: data || cachedData,
     isLoading,
-    error
+    error,
+    clearCache,
   };
 };
