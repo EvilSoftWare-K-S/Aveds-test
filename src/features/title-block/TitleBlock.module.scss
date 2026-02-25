@@ -1,0 +1,37 @@
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 280px;
+  margin: 0 30px;
+  gap: 35px;
+  &_title {
+    height: min-content; 
+    font-weight: 700;
+    font-size: 58px;
+    line-height: 80px;
+    letter-spacing: 0.2px;
+    color: $text-color;
+  }
+  &_buttonPanel {
+    height: max-content;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+}
+@media (max-width: 768px) {
+  .titleBlock_title {
+    font-size: 39px;
+    line-height: 54px;
+  }
+}
+@media (max-width: 375px) {
+  .titleBlock_title {
+    font-size: 28px;
+    line-height: 39px;
+  }
+  .titleBlock {
+    margin: 18.5px 10px;
+  }
+}

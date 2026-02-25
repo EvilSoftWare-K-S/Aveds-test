@@ -6,7 +6,7 @@ import { router } from '../router';
 import { store } from '../store';
 
 if (process.env.NODE_ENV === 'development') {
-  import('../../mocks/browser').then(({ worker }) => {
+  import('../../_mocks/browser').then(({ worker }) => {
     worker.start({
       onUnhandledRequest: 'bypass',
     });
