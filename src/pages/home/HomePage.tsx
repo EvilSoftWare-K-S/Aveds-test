@@ -4,6 +4,7 @@ import { ADBLOCK } from './lib/const';
 import { PATHS } from '@shared/routes/routes';
 import { useNavigate } from 'react-router-dom';
 import { ButtonSignIn } from '@features/button-signin-logout/ButtonSignIn';
+import { TitleBlock } from '@features/title-block/TitleBlock';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -12,15 +13,12 @@ const HomePage = () => {
   };
   return (
     <div className={style.home}>
-      <section className={style.home_wrap}>
-        <h1 className={style.home_wrap_title}>Место для получения медицинской помощи</h1>
-        <div className={style.home_wrap_buttonPanel}>
-          <ButtonSignIn theme='primary' size='xl' textIn='Войти' textOut='Выйти' />
-          <Button onClick={handleGoToContact} theme='secondary' size='xl'>
-            Контакты
-          </Button>
-        </div>
-      </section>
+      <TitleBlock textTitle={'Место для получения медицинской помощи'}>
+        <ButtonSignIn theme='primary' size='xl' textIn='Войти' textOut='Выйти' />
+        <Button onClick={handleGoToContact} theme='secondary' size='xl'>
+          Контакты
+        </Button>
+      </TitleBlock>
       <section className={style.home_adblock}>
         {ADBLOCK.map((item) => {
           return (
